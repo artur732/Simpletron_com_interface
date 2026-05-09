@@ -7,12 +7,12 @@ import javax.swing.JFileChooser;
  */
 
 public class SimpletronVisual extends javax.swing.JFrame {
-
     
-    
-    
+    private static Simpletrom simpletrom = new Simpletrom();
 
     public SimpletronVisual() {
+        
+        
         initComponents();
     }
 
@@ -97,6 +97,11 @@ public class SimpletronVisual extends javax.swing.JFrame {
         });
 
         jButton2.setText("Start");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Next");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -178,6 +183,11 @@ public class SimpletronVisual extends javax.swing.JFrame {
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setText("Save");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuBar1.add(jMenu1);
@@ -282,26 +292,89 @@ public class SimpletronVisual extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        String txt= jTextArea1.getText();
-        jTextArea3.setText(txt);
+        //***
+        simpletrom.setContadorInstrucoes(0);
+        String textoLoad= jTextArea1.getText();
+        simpletrom.setTexto(textoLoad);
+        simpletrom.passaDoTextoAMemoria();
+        simpletrom.passaDaMemoriaAoTexto();
+        jTextArea3.setText(simpletrom.getText());
+        jTextArea2.setText(simpletrom.atualizaRegistradores());
+        //String txt= jTextArea1.getText();
+        //jTextArea3.setText(txt);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        int recebe = simpletrom.umPasso();
         
+        jTextArea2.setText(simpletrom.atualizaRegistradores());
+        
+        if(recebe==2) {
+            jTextArea4.setText("Programa terminado com sucesso!");
+        } 
+        
+        if(recebe==1){
+            jTextArea4.setText("Erro de sintaxe ou programanão finalizado!");
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        
+        if(simpletrom.tudo()==2) {
+            jTextArea2.setText(simpletrom.atualizaRegistradores());
+            jTextArea4.setText("Programa terminado com sucesso!");
+        } else {
+            jTextArea2.setText(simpletrom.atualizaRegistradores());
+            jTextArea4.setText("Erro de sintaxe ou programanão finalizado!");
+        }
+        
+        
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        
+        JFileChooser salvador = new JFileChooser();
+        int opcao = salvador.showSaveDialog(this);
+
+        // 2. Se o usuário clicou em "Salvar"
+        if (opcao == JFileChooser.APPROVE_OPTION) {
+            java.io.File arquivo = salvador.getSelectedFile();
+
+            // Garante a extensão .txt no nome do arquivo
+            String caminho = arquivo.getAbsolutePath();
+            if (!caminho.toLowerCase().endsWith(".txt")) {
+                arquivo = new java.io.File(caminho + ".txt");
+            }
+
+            // 3. Tenta escrever o conteúdo da JTextArea no arquivo selecionado
+            try (java.io.FileWriter fw = new java.io.FileWriter(arquivo)) {
+                // 'txtArea' deve ser o nome da variável da sua JTextArea
+                jTextArea1.write(fw); 
+                javax.swing.JOptionPane.showMessageDialog(this, "Arquivo salvo com sucesso!");
+            } catch (java.io.IOException e) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Erro ao salvar: " + e.getMessage());
+            }
+        }
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
 
     public static void main(String args[]) {
+        
+        simpletrom.iniciaMemoria();
+        
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new SimpletronVisual().setVisible(true);
             }
         });
+        
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
