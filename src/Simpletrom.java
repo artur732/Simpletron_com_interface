@@ -6,10 +6,12 @@ public class Simpletrom {
     private String registradorInstrucoes;
     private int contadorInstrucoes;
     private String texto;
+    private boolean input;
+    private boolean exibir;
     
     public enum CaseEnum {
         
-        DEUCERTO, SINTAXERRO, TERMINOU;
+        DEUCERTO, SINTAXERRO, TERMINOU, LEITURA, EXIBICAO;
     }
     
     //iniciando o simpletrom com 100 espaços de memória
@@ -19,6 +21,8 @@ public class Simpletrom {
         this.contadorInstrucoes=0;
         this.acumulador="0000";
         this.registradorInstrucoes="0000";
+        this.input=false;
+        this.exibir=false;
     }
     
     public void iniciaMemoria() {
@@ -72,13 +76,14 @@ public class Simpletrom {
             recebe=this.umPasso();
             if(recebe!=CaseEnum.DEUCERTO.ordinal()) {
                 
-                if(recebe==CaseEnum.SINTAXERRO.ordinal()) {
+                return recebe;
+                /*if(recebe==CaseEnum.SINTAXERRO.ordinal()) {
                     return CaseEnum.SINTAXERRO.ordinal();
                 }
                 
                 if(recebe==CaseEnum.TERMINOU.ordinal()) {
                     return CaseEnum.TERMINOU.ordinal();
-                }
+                }*/
             }
         }
     }
@@ -104,17 +109,15 @@ public class Simpletrom {
             
             if(cadeia[1]=='0') {
                 
-                //ler do teclado e armazenar em lugar da memória
-                
-                
-                return CaseEnum.DEUCERTO;
+                //ler do teclado e armazenar em lugar da memória                
+                return CaseEnum.LEITURA;
             }
             
             if(cadeia[1]=='1') {
                 
                 //exibir na tela a palavra armazenada em endereço expecífico
                 
-               return CaseEnum.DEUCERTO;
+               return CaseEnum.EXIBICAO;
             } else {
                 return CaseEnum.SINTAXERRO;
                 //comando inválido
@@ -271,7 +274,32 @@ public class Simpletrom {
     public String getRegistradorInstrucoes() {
         return this.registradorInstrucoes;
     }
+    
+    public void setInput(boolean bool) {
+        this.input=bool;
+    }
+    
+    public boolean getInput() {
+        return this.input;
+    }
         
+    public void setMemoriaSimpletrom(String[] memoria) {
+        this.memoriaSimpletrom=memoria;
+    }
+    
+    public String[] getMemoriaSimpletrom() {
+        return this.memoriaSimpletrom;
+    }
+
+    public void setExibir(boolean exibir) {
+        this.exibir=exibir;
+    }
+    
+    public boolean getExibir() {
+        return this.exibir;
+    }
+    
+    
     }
     
 

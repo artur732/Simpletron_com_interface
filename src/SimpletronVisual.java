@@ -14,6 +14,7 @@ public class SimpletronVisual extends javax.swing.JFrame {
         
         
         initComponents();
+        //getContentPane().setBackground(new java.awt.Color(204,255, 255));
     }
 
     @SuppressWarnings("unchecked")
@@ -40,6 +41,8 @@ public class SimpletronVisual extends javax.swing.JFrame {
         jTextArea5 = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -81,7 +84,7 @@ public class SimpletronVisual extends javax.swing.JFrame {
         jScrollPane3.setViewportView(jTextArea3);
 
         jLabel4.setFont(new java.awt.Font("Viner Hand ITC", 1, 36)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel4.setForeground(new java.awt.Color(153, 204, 255));
         jLabel4.setText("S I M P L E T R O M");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -149,7 +152,18 @@ public class SimpletronVisual extends javax.swing.JFrame {
         jLabel6.setText("Input Area");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel7.setText("Processamento");
+        jLabel7.setText("Saída");
+
+        jButton4.setText("In");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Viner Hand ITC", 0, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(51, 153, 255));
+        jLabel8.setText("Feito por: Artur Silveira");
 
         jMenu2.setText("Run");
 
@@ -222,11 +236,17 @@ public class SimpletronVisual extends javax.swing.JFrame {
                                     .addComponent(jLabel5))
                                 .addGap(85, 85, 85)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel6))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(162, 162, 162)
@@ -253,13 +273,16 @@ public class SimpletronVisual extends javax.swing.JFrame {
                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel5)
-                        .addComponent(jLabel7)))
+                        .addComponent(jLabel7)
+                        .addComponent(jLabel8)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane4)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane4)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton4))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -293,12 +316,16 @@ public class SimpletronVisual extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //***
+        simpletrom.setAcumulador("0000");
+        simpletrom.setRegistradorInstrucoes("0000");
         simpletrom.setContadorInstrucoes(0);
         String textoLoad= jTextArea1.getText();
         simpletrom.setTexto(textoLoad);
         simpletrom.passaDoTextoAMemoria();
         simpletrom.passaDaMemoriaAoTexto();
         jTextArea3.setText(simpletrom.getText());
+        jTextArea3.setCaretPosition(0);
+        jTextArea4.setText("");
         jTextArea2.setText(simpletrom.atualizaRegistradores());
         //String txt= jTextArea1.getText();
         //jTextArea3.setText(txt);
@@ -308,13 +335,29 @@ public class SimpletronVisual extends javax.swing.JFrame {
         int recebe = simpletrom.umPasso();
         
         jTextArea2.setText(simpletrom.atualizaRegistradores());
-        
+        simpletrom.passaDaMemoriaAoTexto();
+        jTextArea3.setText(simpletrom.getText());
+        jTextArea3.setCaretPosition(0);
         if(recebe==2) {
             jTextArea4.setText("Programa terminado com sucesso!");
         } 
         
         if(recebe==1){
             jTextArea4.setText("Erro de sintaxe ou programanão finalizado!");
+        }
+        
+        if(recebe==3) {
+            jTextArea4.setText("Insira o valor na area de input e aperte o botão 'in'\nPor fim, o start/next");
+        }
+        
+        if(recebe==4) {
+            
+            String preIndex = simpletrom.getRegistradorInstrucoes();
+            char [] charIndex= preIndex.toCharArray();
+            String ultimaStr = String.valueOf(charIndex[2]) + charIndex[3];
+            int index = Integer.parseInt(ultimaStr);
+            String[] memoriaTemp=simpletrom.getMemoriaSimpletrom();
+            jTextArea4.setText(memoriaTemp[index]);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -324,18 +367,41 @@ public class SimpletronVisual extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
-        if(simpletrom.tudo()==2) {
+        simpletrom.passaDaMemoriaAoTexto();
+        jTextArea3.setText(simpletrom.getText());
+        int resultado=simpletrom.tudo();
+        jTextArea2.setText(simpletrom.atualizaRegistradores());
+        simpletrom.passaDaMemoriaAoTexto();
+        jTextArea3.setText(simpletrom.getText());
+        jTextArea3.setCaretPosition(0);
+        
+        if(resultado==2) {
             jTextArea2.setText(simpletrom.atualizaRegistradores());
             jTextArea4.setText("Programa terminado com sucesso!");
-        } else {
+        } else if(resultado==1) {
             jTextArea2.setText(simpletrom.atualizaRegistradores());
             jTextArea4.setText("Erro de sintaxe ou programanão finalizado!");
+        } else if(resultado==3) {
+            
+            jTextArea4.setText("Insira o valor na area de input e aperte o botão 'in'\nPor fim, o start/next");
+        }  else {
+            
+            String preIndex = simpletrom.getRegistradorInstrucoes();
+            char [] charIndex= preIndex.toCharArray();
+            String ultimaStr = String.valueOf(charIndex[2]) + charIndex[3];
+            int index = Integer.parseInt(ultimaStr);
+            String[] memoriaTemp=simpletrom.getMemoriaSimpletrom();
+            jTextArea4.setText(memoriaTemp[index]+"\nPress start");
+            
         }
-        
-        
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void casoInput() {
+        
+        jTextArea4.setText("Insira o valor na area de input e aperte o botão 'in'\nPor fim, o start/next");
+    }
+    
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         
         JFileChooser salvador = new JFileChooser();
@@ -362,6 +428,30 @@ public class SimpletronVisual extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        //in
+        String escrito=simpletrom.getRegistradorInstrucoes();
+        char[] escritoChar = escrito.toCharArray();
+        if(escritoChar[0]=='1' && escritoChar[1]=='0') {
+            String prePosicao=String.valueOf(escritoChar[2]) + escritoChar[3];
+            
+            int posicao=Integer.parseInt(prePosicao);
+            
+            String[] memoriaTemp=simpletrom.getMemoriaSimpletrom();
+            memoriaTemp[posicao]=jTextArea5.getText();
+            simpletrom.setMemoriaSimpletrom(memoriaTemp);
+            ///
+            simpletrom.passaDaMemoriaAoTexto();
+            jTextArea3.setText(simpletrom.getText());
+            jTextArea3.setCaretPosition(0);
+            simpletrom.setInput(false);
+            jTextArea2.setText(simpletrom.atualizaRegistradores());
+            jTextArea4.setText("Aperte o next/start");   
+        }
+
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
+
 
     public static void main(String args[]) {
         
@@ -370,7 +460,8 @@ public class SimpletronVisual extends javax.swing.JFrame {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SimpletronVisual().setVisible(true);
+                SimpletronVisual tela = new SimpletronVisual();
+                tela.setVisible(true);
             }
         });
         
@@ -381,6 +472,7 @@ public class SimpletronVisual extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -388,6 +480,7 @@ public class SimpletronVisual extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
