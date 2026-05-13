@@ -9,18 +9,24 @@ import javax.swing.JFileChooser;
 public class SimpletronVisual extends javax.swing.JFrame {
     
     private static Simpletrom simpletrom = new Simpletrom();
+    private boolean all;
 
     public SimpletronVisual() {
         
         
         initComponents();
-        //getContentPane().setBackground(new java.awt.Color(204,255, 255));
+        
+        setLocationRelativeTo(null);
+        jRadioButtonMenuItem3.setSelected(true);
+        jButton2.setEnabled(false);
+        jButton3.setEnabled(false);
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -44,22 +50,22 @@ public class SimpletronVisual extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
+        jRadioButtonMenuItem3 = new javax.swing.JRadioButtonMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Código");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Registradores");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Memória");
 
         jScrollPane2.setToolTipText("");
@@ -87,7 +93,7 @@ public class SimpletronVisual extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(153, 204, 255));
         jLabel4.setText("S I M P L E T R O M");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("Controles");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -118,12 +124,16 @@ public class SimpletronVisual extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jButton3))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,9 +142,9 @@ public class SimpletronVisual extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTextArea4.setColumns(20);
@@ -148,10 +158,10 @@ public class SimpletronVisual extends javax.swing.JFrame {
         jTextArea5.setRows(5);
         jScrollPane5.setViewportView(jTextArea5);
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setText("Input Area");
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setText("Saída");
 
         jButton4.setText("In");
@@ -161,29 +171,9 @@ public class SimpletronVisual extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setFont(new java.awt.Font("Viner Hand ITC", 0, 12)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Viner Hand ITC", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(51, 153, 255));
         jLabel8.setText("Feito por: Artur Silveira");
-
-        jMenu2.setText("Run");
-
-        jMenuItem3.setText("All");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem3);
-
-        jMenuItem4.setText("Step by step");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem4);
-
-        jMenuBar1.add(jMenu2);
 
         jMenu1.setBackground(new java.awt.Color(204, 204, 204));
         jMenu1.setText("File");
@@ -206,6 +196,28 @@ public class SimpletronVisual extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu2.setText("Run");
+
+        buttonGroup1.add(jRadioButtonMenuItem1);
+        jRadioButtonMenuItem1.setText("All");
+        jRadioButtonMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jRadioButtonMenuItem1);
+
+        buttonGroup1.add(jRadioButtonMenuItem3);
+        jRadioButtonMenuItem3.setText("Step by step");
+        jRadioButtonMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jRadioButtonMenuItem3);
+
+        jMenuBar1.add(jMenu2);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -213,77 +225,86 @@ public class SimpletronVisual extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(260, 260, 260))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(79, 79, 79))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1))
-                                .addGap(42, 42, 42)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextArea2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2))
-                                .addGap(35, 35, 35)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5))
-                                .addGap(85, 85, 85)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel6))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(162, 162, 162)
-                        .addComponent(jLabel4)))
-                .addContainerGap(83, Short.MAX_VALUE))
+                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jTextArea2, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(93, 93, 93)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel7)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel8))
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(43, 43, 43))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(284, 284, 284)
+                .addComponent(jLabel4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addGap(16, 16, 16)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(jLabel3)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
-                    .addComponent(jTextArea2)
-                    .addComponent(jScrollPane3))
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jTextArea2)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel5)
-                        .addComponent(jLabel7)
-                        .addComponent(jLabel8)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane4)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton4))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel6)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton4)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel5)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         pack();
@@ -310,25 +331,27 @@ public class SimpletronVisual extends javax.swing.JFrame {
 }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //***
-        simpletrom.setAcumulador("0000");
-        simpletrom.setRegistradorInstrucoes("0000");
-        simpletrom.setContadorInstrucoes(0);
-        String textoLoad= jTextArea1.getText();
-        simpletrom.setTexto(textoLoad);
-        simpletrom.passaDoTextoAMemoria();
-        simpletrom.passaDaMemoriaAoTexto();
-        jTextArea3.setText(simpletrom.getText());
-        jTextArea3.setCaretPosition(0);
-        jTextArea4.setText("");
-        jTextArea2.setText(simpletrom.atualizaRegistradores());
-        //String txt= jTextArea1.getText();
-        //jTextArea3.setText(txt);
+        
+        if(!("".equals(jTextArea1.getText()))) {
+            jButton2.setEnabled(true);
+            jButton3.setEnabled(false);
+            simpletrom.setAcumulador("0000");
+            simpletrom.setRegistradorInstrucoes("0000");
+            simpletrom.setContadorInstrucoes(0);
+            String textoLoad= jTextArea1.getText();
+            simpletrom.setTexto(textoLoad);
+            simpletrom.passaDoTextoAMemoria();
+            simpletrom.passaDaMemoriaAoTexto();
+            jTextArea3.setText(simpletrom.getText());
+            jTextArea3.setCaretPosition(0);
+            jTextArea4.setText("");
+            jTextArea2.setText(simpletrom.atualizaRegistradores());
+            
+        } else {
+            jTextArea4.setText("Digite o código!");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -340,10 +363,14 @@ public class SimpletronVisual extends javax.swing.JFrame {
         jTextArea3.setCaretPosition(0);
         if(recebe==2) {
             jTextArea4.setText("Programa terminado com sucesso!");
+            jButton3.setEnabled(false);
+            jButton2.setEnabled(false);
         } 
         
         if(recebe==1){
             jTextArea4.setText("Erro de sintaxe ou programanão finalizado!");
+            jButton3.setEnabled(false);
+            jButton2.setEnabled(false);
         }
         
         if(recebe==3) {
@@ -361,38 +388,44 @@ public class SimpletronVisual extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
-        simpletrom.passaDaMemoriaAoTexto();
-        jTextArea3.setText(simpletrom.getText());
-        int resultado=simpletrom.tudo();
-        jTextArea2.setText(simpletrom.atualizaRegistradores());
-        simpletrom.passaDaMemoriaAoTexto();
-        jTextArea3.setText(simpletrom.getText());
-        jTextArea3.setCaretPosition(0);
+        if(this.getAll()) {
+            simpletrom.passaDaMemoriaAoTexto();
+            jTextArea3.setText(simpletrom.getText());
+            int resultado=simpletrom.tudo();
+            jTextArea2.setText(simpletrom.atualizaRegistradores());
+            simpletrom.passaDaMemoriaAoTexto();
+            jTextArea3.setText(simpletrom.getText());
+            jTextArea3.setCaretPosition(0);
+
+            if(resultado==2) {
+                jTextArea2.setText(simpletrom.atualizaRegistradores());
+                jTextArea4.setText("Programa terminado com sucesso!");
+                jButton3.setEnabled(false);
+                jButton2.setEnabled(false);
+                
+            } else if(resultado==1) {
+                jTextArea2.setText(simpletrom.atualizaRegistradores());
+                jTextArea4.setText("Erro de sintaxe ou programanão finalizado!");
+                jButton3.setEnabled(false);
+                jButton2.setEnabled(false);
+            } else if(resultado==3) {
+
+                jTextArea4.setText("Insira o valor na area de input e aperte o botão 'in'\nPor fim, o start/next");
+            }  else {
+
+                String preIndex = simpletrom.getRegistradorInstrucoes();
+                char [] charIndex= preIndex.toCharArray();
+                String ultimaStr = String.valueOf(charIndex[2]) + charIndex[3];
+                int index = Integer.parseInt(ultimaStr);
+                String[] memoriaTemp=simpletrom.getMemoriaSimpletrom();
+                jTextArea4.setText(memoriaTemp[index]+"\nPress start");
+
+            }
         
-        if(resultado==2) {
-            jTextArea2.setText(simpletrom.atualizaRegistradores());
-            jTextArea4.setText("Programa terminado com sucesso!");
-        } else if(resultado==1) {
-            jTextArea2.setText(simpletrom.atualizaRegistradores());
-            jTextArea4.setText("Erro de sintaxe ou programanão finalizado!");
-        } else if(resultado==3) {
-            
-            jTextArea4.setText("Insira o valor na area de input e aperte o botão 'in'\nPor fim, o start/next");
-        }  else {
-            
-            String preIndex = simpletrom.getRegistradorInstrucoes();
-            char [] charIndex= preIndex.toCharArray();
-            String ultimaStr = String.valueOf(charIndex[2]) + charIndex[3];
-            int index = Integer.parseInt(ultimaStr);
-            String[] memoriaTemp=simpletrom.getMemoriaSimpletrom();
-            jTextArea4.setText(memoriaTemp[index]+"\nPress start");
-            
+        } else {
+            jButton3.setEnabled(true);
         }
         
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -402,32 +435,6 @@ public class SimpletronVisual extends javax.swing.JFrame {
         jTextArea4.setText("Insira o valor na area de input e aperte o botão 'in'\nPor fim, o start/next");
     }
     
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        
-        JFileChooser salvador = new JFileChooser();
-        int opcao = salvador.showSaveDialog(this);
-
-        // 2. Se o usuário clicou em "Salvar"
-        if (opcao == JFileChooser.APPROVE_OPTION) {
-            java.io.File arquivo = salvador.getSelectedFile();
-
-            // Garante a extensão .txt no nome do arquivo
-            String caminho = arquivo.getAbsolutePath();
-            if (!caminho.toLowerCase().endsWith(".txt")) {
-                arquivo = new java.io.File(caminho + ".txt");
-            }
-
-            // 3. Tenta escrever o conteúdo da JTextArea no arquivo selecionado
-            try (java.io.FileWriter fw = new java.io.FileWriter(arquivo)) {
-                // 'txtArea' deve ser o nome da variável da sua JTextArea
-                jTextArea1.write(fw); 
-                javax.swing.JOptionPane.showMessageDialog(this, "Arquivo salvo com sucesso!");
-            } catch (java.io.IOException e) {
-                javax.swing.JOptionPane.showMessageDialog(this, "Erro ao salvar: " + e.getMessage());
-            }
-        }
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         //in
         String escrito=simpletrom.getRegistradorInstrucoes();
@@ -452,23 +459,65 @@ public class SimpletronVisual extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+
+        JFileChooser salvador = new JFileChooser();
+        int opcao = salvador.showSaveDialog(this);
+
+        // 2. Se o usuário clicou em "Salvar"
+        if (opcao == JFileChooser.APPROVE_OPTION) {
+            java.io.File arquivo = salvador.getSelectedFile();
+
+            // Garante a extensão .txt no nome do arquivo
+            String caminho = arquivo.getAbsolutePath();
+            if (!caminho.toLowerCase().endsWith(".txt")) {
+                arquivo = new java.io.File(caminho + ".txt");
+            }
+
+            // 3. Tenta escrever o conteúdo da JTextArea no arquivo selecionado
+            try (java.io.FileWriter fw = new java.io.FileWriter(arquivo)) {
+                // 'txtArea' deve ser o nome da variável da sua JTextArea
+                jTextArea1.write(fw);
+                javax.swing.JOptionPane.showMessageDialog(this, "Arquivo salvo com sucesso!");
+            } catch (java.io.IOException e) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Erro ao salvar: " + e.getMessage());
+            }
+        }
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jRadioButtonMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem1ActionPerformed
+        
+        this.setAll(true);
+        
+       jButton3.setEnabled(false);
+    }//GEN-LAST:event_jRadioButtonMenuItem1ActionPerformed
+
+    private void jRadioButtonMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem3ActionPerformed
+        this.setAll(false);
+    }//GEN-LAST:event_jRadioButtonMenuItem3ActionPerformed
 
     public static void main(String args[]) {
         
         simpletrom.iniciaMemoria();
-        
-        
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 SimpletronVisual tela = new SimpletronVisual();
                 tela.setVisible(true);
             }
         });
-        
-        
+    }
+    
+    public void setAll(boolean all) {
+        this.all=all;
+    }
+    
+    public boolean getAll() {
+        return this.all;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -486,9 +535,9 @@ public class SimpletronVisual extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
+    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;

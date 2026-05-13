@@ -177,7 +177,7 @@ public class Simpletrom {
             if(cadeia[1]=='2') {
              
                 //divide o valor do acumulador pelo valor da memória 
-                this.acumulador=String.valueOf((valorAcumulador%valorMemoria));
+                this.acumulador=String.valueOf((valorAcumulador/valorMemoria));
                 return CaseEnum.DEUCERTO;
             }
             
@@ -213,16 +213,7 @@ public class Simpletrom {
                 }
                 return CaseEnum.DEUCERTO;
             } 
- /*
-4005
-0001
-0002
-0003
-0004
-2001
-3002
-3304         
- */       
+    
             if(cadeia[1]=='2') {
              
                 //JMP if acumulador==0
