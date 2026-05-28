@@ -8,6 +8,7 @@ public class Simpletrom {
     private String texto;
     private boolean input;
     private boolean exibir;
+    private int ci;
     
     public enum CaseEnum {
         
@@ -23,6 +24,7 @@ public class Simpletrom {
         this.registradorInstrucoes="0000";
         this.input=false;
         this.exibir=false;
+        this.ci=0;
     }
     
     public void iniciaMemoria() {
@@ -64,8 +66,14 @@ public class Simpletrom {
     
     public String atualizaRegistradores() {
         
-        return ("R Instrucoes:\n"+this.getRegistradorInstrucoes()+
-        "\n\n\nACC:\n"+this.getAcumulador());
+        String reg = this.getRegistradorInstrucoes();
+        char[] regInst=reg.toCharArray();
+        String codOperacao=String.valueOf(new char[] {regInst[0], regInst[1]});
+        String codOperand=String.valueOf(new char[] {regInst[2], regInst[3]});
+        
+        return ("Registrador de instruções:\n"+this.getRegistradorInstrucoes()+
+        "\n\n\nACC:\n"+this.getAcumulador()+"\n\n\nContador de instruções:\n"+String.valueOf(this.getCi())+
+        "\n\n\nCódigo de operação:\n"+codOperacao+"\n\n\nOperando:\n"+codOperand);
     }
     
     public int tudo() {
@@ -88,10 +96,13 @@ public class Simpletrom {
         }
     }
     
+    public void incrementaContador() {
+        this.contadorInstrucoes+=1;
+    }
     public int umPasso() {
         
         this.registradorInstrucoes=this.memoriaSimpletrom[this.contadorInstrucoes];
-        
+        this.ci=this.contadorInstrucoes;
         CaseEnum recebe = this.cases();
         
         this.contadorInstrucoes+=1;
@@ -290,7 +301,14 @@ public class Simpletrom {
         return this.exibir;
     }
     
+    public int getContadorDeInstrucoes() {
+        return this.contadorInstrucoes;
+    }
     
+    public int getCi() {
+        return this.ci;
+        
+    }
     }
     
 

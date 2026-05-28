@@ -235,9 +235,7 @@ public class SimpletronVisual extends javax.swing.JFrame {
                             .addComponent(jLabel1)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(79, 79, 79))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
@@ -275,10 +273,11 @@ public class SimpletronVisual extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(jLabel1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -355,8 +354,18 @@ public class SimpletronVisual extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        int recebe = simpletrom.umPasso();
-        
+        int recebe=-1;
+        try {
+            recebe = simpletrom.umPasso();
+        }catch(ArithmeticException e) {
+            jTextArea4.setText("Divisão por zero é inválida!");
+            jButton3.setEnabled(false);
+            jButton2.setEnabled(false);
+        }catch(Exception e) {
+            jTextArea4.setText("Erro no código!");
+            jButton3.setEnabled(false);
+            jButton2.setEnabled(false);
+        }
         jTextArea2.setText(simpletrom.atualizaRegistradores());
         simpletrom.passaDaMemoriaAoTexto();
         jTextArea3.setText(simpletrom.getText());
@@ -389,11 +398,21 @@ public class SimpletronVisual extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+        int resultado=-1;
         if(this.getAll()) {
             simpletrom.passaDaMemoriaAoTexto();
             jTextArea3.setText(simpletrom.getText());
-            int resultado=simpletrom.tudo();
+            try {
+                resultado=simpletrom.tudo();
+            }catch(ArithmeticException e) {
+                jTextArea4.setText("Divisão por zero é inválida!");
+                jButton3.setEnabled(false);
+                jButton2.setEnabled(false);
+            }catch(Exception e) {
+                jTextArea4.setText("Erro no código!");
+                jButton3.setEnabled(false);
+                jButton2.setEnabled(false);
+            }
             jTextArea2.setText(simpletrom.atualizaRegistradores());
             simpletrom.passaDaMemoriaAoTexto();
             jTextArea3.setText(simpletrom.getText());
@@ -413,7 +432,7 @@ public class SimpletronVisual extends javax.swing.JFrame {
             } else if(resultado==3) {
 
                 jTextArea4.setText("Insira o valor na area de input e aperte o botão 'in'\nPor fim, o start/next");
-            }  else {
+            }  else if(resultado==4) {
 
                 String preIndex = simpletrom.getRegistradorInstrucoes();
                 char [] charIndex= preIndex.toCharArray();
@@ -422,6 +441,10 @@ public class SimpletronVisual extends javax.swing.JFrame {
                 String[] memoriaTemp=simpletrom.getMemoriaSimpletrom();
                 jTextArea4.setText(memoriaTemp[index]+"\nPress start");
 
+            } else {
+                jTextArea4.setText("Erro no código!");
+                jButton3.setEnabled(false);
+                jButton2.setEnabled(false);
             }
         
         } else {
